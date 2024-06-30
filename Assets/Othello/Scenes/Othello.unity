@@ -206,6 +206,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 155003379}
+  - component: {fileID: 155003380}
   m_Layer: 5
   m_Name: StartMenu
   m_TagString: Untagged
@@ -238,6 +239,36 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -192.7962, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &155003380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 155003378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29a92069d24f54733943ae5de4cb733f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  othello: {fileID: 370366755}
+  charaSprites:
+  - {fileID: 21300000, guid: 332a83712e06c4997b7861c815aae8d3, type: 3}
+  - {fileID: 21300000, guid: 7148944ce132d4c84aee8376a466f91b, type: 3}
+  difficultySprites:
+  - {fileID: 21300000, guid: 65a20ee38c9184e82b4780519f4512ee, type: 3}
+  - {fileID: 21300000, guid: e873cf24c3a634f85afee695523c1638, type: 3}
+  playFirstSprites:
+  - {fileID: 21300000, guid: 9b69f3fabd73448349327ee38b846e7e, type: 3}
+  - {fileID: 21300000, guid: d28307b235bd64065bc66d4355e1be27, type: 3}
+  - {fileID: 21300000, guid: 5d1c4c48b8398427698cb083f72651ca, type: 3}
+  assistSprites:
+  - {fileID: 21300000, guid: 0db09117330cc4af692d4feae7429bda, type: 3}
+  - {fileID: 21300000, guid: cd2301eafaaec4da995c1806fa1f6bb6, type: 3}
+  charaImage: {fileID: 647241563}
+  difficultyImage: {fileID: 254502194}
+  playFirstImage: {fileID: 155509226}
+  assistImage: {fileID: 1069071423}
 --- !u!1 &155509224
 GameObject:
   m_ObjectHideFlags: 0
@@ -932,6 +963,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78a4b80f3c2b74fe0a64d1f8901cd580, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  difficulty: 1
+  playFirst: 0
+  isAssist: 0
 --- !u!1 &472101771
 GameObject:
   m_ObjectHideFlags: 0
@@ -1246,7 +1280,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 560212553}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 155003380}
+        m_TargetAssemblyTypeName: Othello.StartMenu, Assembly-CSharp
+        m_MethodName: OnAssistClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &560212553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1524,7 +1570,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 724166079}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 155003380}
+        m_TargetAssemblyTypeName: Othello.StartMenu, Assembly-CSharp
+        m_MethodName: OnAssistClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &724166079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1931,7 +1989,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1057920921}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 155003380}
+        m_TargetAssemblyTypeName: Othello.StartMenu, Assembly-CSharp
+        m_MethodName: OnPlayFistRightClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1057920921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2129,7 +2199,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1111324020}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 155003380}
+        m_TargetAssemblyTypeName: Othello.StartMenu, Assembly-CSharp
+        m_MethodName: OnDifficultyRightClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1111324020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3054,7 +3136,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1533968849}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 155003380}
+        m_TargetAssemblyTypeName: Othello.StartMenu, Assembly-CSharp
+        m_MethodName: OnPlayFistLeftClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1533968849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3699,7 +3793,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1844640780}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 155003380}
+        m_TargetAssemblyTypeName: Othello.StartMenu, Assembly-CSharp
+        m_MethodName: OnDifficultyLeftClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1844640780
 MonoBehaviour:
   m_ObjectHideFlags: 0
