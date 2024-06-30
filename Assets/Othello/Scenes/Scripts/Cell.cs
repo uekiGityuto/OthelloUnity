@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Othello
@@ -9,9 +7,13 @@ namespace Othello
         Othello othello;
         int x;
         int y;
+        [SerializeField] Transform discSpace;
+        Disc disc;
 
         public int X => x;
         public int Y => y;
+        public Transform DiscSpace => discSpace;
+        public Disc Disc { get => disc; set => disc = value; }
 
         public bool IsEdge => x == 0 || x == Board.Column - 1 || y == 0 || y == Board.Row - 1;
         public bool IsCorner => (x == 0 || x == Board.Column - 1) && (y == 0 || y == Board.Row - 1);

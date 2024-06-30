@@ -27,5 +27,13 @@ namespace Othello
                 }
             }
         }
+
+        public void PlaceDiscDirect(int x, int y, DiscType discType)
+        {
+            var cell = cells[x, y];
+            var disc = Instantiate(Resources.Load<Disc>("Prefabs/Disc"), cell.DiscSpace);
+            disc.Init(discType);
+            cell.Disc = disc;
+        }
     }
 }

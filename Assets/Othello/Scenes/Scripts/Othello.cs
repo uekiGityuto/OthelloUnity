@@ -5,6 +5,7 @@ namespace Othello
 
     public enum Difficulty { Normal, Hard }
     public enum PlayFirst { Player, Enemy, Random }
+    public enum DiscType { Black, White }
 
 
     public class Othello : MonoBehaviour

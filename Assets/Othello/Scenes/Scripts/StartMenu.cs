@@ -18,10 +18,15 @@ namespace Othello
 
         void Start()
         {
+            board.Init();
+            board.PlaceDiscDirect(3, 3, DiscType.White);
+            board.PlaceDiscDirect(4, 3, DiscType.Black);
+            board.PlaceDiscDirect(3, 4, DiscType.Black);
+            board.PlaceDiscDirect(4, 4, DiscType.White);
+
             SetDifficulty(othello.Difficulty);
             SetPlayFist(othello.PlayFirst);
             SetAssist(othello.IsAssist);
-            board.Init();
         }
 
 
