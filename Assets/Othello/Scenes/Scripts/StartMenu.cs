@@ -14,12 +14,14 @@ namespace Othello
         [SerializeField] Image difficultyImage;
         [SerializeField] Image playFirstImage;
         [SerializeField] Image assistImage;
+        [SerializeField] Board board;
 
         void Start()
         {
             SetDifficulty(othello.Difficulty);
             SetPlayFist(othello.PlayFirst);
             SetAssist(othello.IsAssist);
+            board.Init();
         }
 
 
