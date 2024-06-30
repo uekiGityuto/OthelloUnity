@@ -531,7 +531,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 223229158}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 370366755}
+        m_TargetAssemblyTypeName: Othello.Othello, Assembly-CSharp
+        m_MethodName: OnGameStartClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &223229158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -967,6 +979,7 @@ MonoBehaviour:
   difficulty: 0
   playFirst: 0
   isAssist: 0
+  startMenu: {fileID: 155003380}
 --- !u!1 &472101771
 GameObject:
   m_ObjectHideFlags: 0

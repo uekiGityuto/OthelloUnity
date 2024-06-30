@@ -1,4 +1,5 @@
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Othello
 {
@@ -6,6 +7,7 @@ namespace Othello
     public enum Difficulty { Normal, Hard }
     public enum PlayFirst { Player, Enemy, Random }
     public enum DiscType { Black, White }
+    public enum Turn { Player, Enemy }
 
 
     public class Othello : MonoBehaviour
@@ -14,21 +16,28 @@ namespace Othello
         [SerializeField] Difficulty difficulty;
         [SerializeField] PlayFirst playFirst;
         [SerializeField] bool isAssist;
+        [SerializeField] StartMenu startMenu;
 
         public Difficulty Difficulty { get => difficulty; set => difficulty = value; }
         public PlayFirst PlayFirst { get => playFirst; set => playFirst = value; }
         public bool IsAssist { get => isAssist; set => isAssist = value; }
 
-        // Start is called before the first frame update
-        void Start()
+        public void OnGameStartClick()
         {
-            Debug.Log("ハローてんぷら！");
+            Turn firstTurn;
+            var r = Random.Range(0, 2);
+            Debug.Log(r);
+            if (playFirst == PlayFirst.Player || (playFirst == PlayFirst.Random && r == 0))
+            {
+                firstTurn = Turn.Player;
+            }
+            else
+            {
+                firstTurn = Turn.Enemy;
+            }
+
+            startMenu.gameObject.SetActive(false);
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
     }
 }
