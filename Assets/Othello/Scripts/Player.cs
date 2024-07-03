@@ -44,5 +44,13 @@ namespace Othello
                 discs.Add(disc);
             }
         }
+
+        public Disc GetNextDisc()
+        {
+            var disc = discs[discs.Count - 1];
+            discs.RemoveAt(discs.Count - 1);
+            disc.gameObject.SetActive(false);
+            return disc;
+        }
     }
 }

@@ -29,7 +29,7 @@ namespace Othello
 
         public void OnClick()
         {
-            Debug.Log($"{x}_{y}");
+            othello.OnCellClick(this);
         }
 
     }

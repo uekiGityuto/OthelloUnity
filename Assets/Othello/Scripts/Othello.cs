@@ -1,5 +1,6 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
+using UnityEngine.SceneManagement;
 
 namespace Othello
 {
@@ -18,6 +19,7 @@ namespace Othello
         [SerializeField] StartMenu startMenu;
         [SerializeField] Player player;
         [SerializeField] Enemy enemy;
+        [SerializeField] Board board;
 
 
         public Difficulty Difficulty { get => difficulty; set => difficulty = value; }
@@ -46,5 +48,20 @@ namespace Othello
             startMenu.gameObject.SetActive(false);
         }
 
+        public void OnCellClick(Cell cell)
+        {
+            Debug.Log($"{cell.X}_{cell.Y}");
+            if (cell.Disc == null)
+            {
+                var disc = player.GetNextDisc();
+                board.PlaceDisc(cell, disc);
+            }
+
+        }
+
+        public void OnRestartClick()
+        {
+            SceneManager.LoadScene("Othello");
+        }
     }
 }

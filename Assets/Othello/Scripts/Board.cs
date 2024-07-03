@@ -35,5 +35,14 @@ namespace Othello
             disc.Init(discType);
             cell.Disc = disc;
         }
+
+        public void PlaceDisc(Cell cell, Disc disc)
+        {
+            disc.transform.SetParent(cell.DiscSpace);
+            disc.transform.localPosition = Vector3.zero;
+            disc.transform.localEulerAngles = Vector3.zero;
+            disc.gameObject.SetActive(true);
+            cell.Disc = disc;
+        }
     }
 }
