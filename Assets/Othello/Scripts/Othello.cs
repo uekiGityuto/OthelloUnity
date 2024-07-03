@@ -17,6 +17,8 @@ namespace Othello
         [SerializeField] PlayFirst playFirst;
         [SerializeField] bool isAssist;
         [SerializeField] StartMenu startMenu;
+        [SerializeField] Player player;
+
 
         public Difficulty Difficulty { get => difficulty; set => difficulty = value; }
         public PlayFirst PlayFirst { get => playFirst; set => playFirst = value; }
@@ -30,10 +32,12 @@ namespace Othello
             if (playFirst == PlayFirst.Player || (playFirst == PlayFirst.Random && r == 0))
             {
                 firstTurn = Turn.Player;
+                player.Init(DiscType.Black, true);
             }
             else
             {
                 firstTurn = Turn.Enemy;
+                player.Init(DiscType.White, false);
             }
 
             startMenu.gameObject.SetActive(false);
