@@ -9,7 +9,6 @@ namespace Othello
     public enum DiscType { Black, White }
     public enum Turn { Player, Enemy }
 
-
     public class Othello : MonoBehaviour
     {
 
@@ -18,6 +17,7 @@ namespace Othello
         [SerializeField] bool isAssist;
         [SerializeField] StartMenu startMenu;
         [SerializeField] Player player;
+        [SerializeField] Enemy enemy;
 
 
         public Difficulty Difficulty { get => difficulty; set => difficulty = value; }
@@ -33,11 +33,14 @@ namespace Othello
             {
                 firstTurn = Turn.Player;
                 player.Init(DiscType.Black, true);
+                enemy.Init(DiscType.White, false, difficulty);
+
             }
             else
             {
                 firstTurn = Turn.Enemy;
                 player.Init(DiscType.White, false);
+                enemy.Init(DiscType.Black, true, difficulty);
             }
 
             startMenu.gameObject.SetActive(false);
