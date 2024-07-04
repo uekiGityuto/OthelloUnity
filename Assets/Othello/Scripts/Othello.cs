@@ -50,8 +50,7 @@ namespace Othello
 
         public void OnCellClick(Cell cell)
         {
-            Debug.Log($"{cell.X}_{cell.Y}");
-            if (cell.Disc == null)
+            if (board.CanPlaceDisc(cell, player.DiscType))
             {
                 var disc = player.GetNextDisc();
                 board.PlaceDisc(cell, disc);

@@ -8,8 +8,10 @@ namespace Othello
         [SerializeField] Sprite[] discSprites;
         [SerializeField] Image image;
         DiscType discType;
+        int reverseIdx;
 
         public DiscType DiscType => discType;
+        public int ReverseIdx { get => reverseIdx; set => reverseIdx = value; }
 
         public void SetDiscType(DiscType discType)
         {
