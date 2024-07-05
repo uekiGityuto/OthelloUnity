@@ -20,7 +20,8 @@ namespace Othello
         [SerializeField] Player player;
         [SerializeField] Enemy enemy;
         [SerializeField] Board board;
-
+        Turn turn;
+        Disc selectedDisc;
 
         public Difficulty Difficulty { get => difficulty; set => difficulty = value; }
         public PlayFirst PlayFirst { get => playFirst; set => playFirst = value; }
@@ -36,25 +37,24 @@ namespace Othello
                 firstTurn = Turn.Player;
                 player.Init(DiscType.Black, true);
                 enemy.Init(DiscType.White, false, difficulty);
-                player.Bound.Play();
             }
             else
             {
                 firstTurn = Turn.Enemy;
                 player.Init(DiscType.White, false);
                 enemy.Init(DiscType.Black, true, difficulty);
-                enemy.Bound.Play();
             }
 
             startMenu.gameObject.SetActive(false);
+            ChangeTurn(firstTurn);
         }
 
         public void OnCellClick(Cell cell)
         {
             if (board.CanPlaceDisc(cell, player.DiscType))
             {
-                var disc = player.GetNextDisc();
-                board.PlaceDisc(cell, disc);
+                board.PlaceDisc(cell, selectedDisc);
+                ChangeTurn();
             }
 
         }
@@ -62,6 +62,32 @@ namespace Othello
         public void OnRestartClick()
         {
             SceneManager.LoadScene("Othello");
+        }
+
+        void ChangeTurn()
+        {
+            var nextTurn = (turn == Turn.Player) ? Turn.Enemy : Turn.Player;
+            ChangeTurn(nextTurn);
+        }
+
+        void ChangeTurn(Turn nextTurn)
+        {
+            turn = nextTurn;
+            turn = nextTurn;
+            if (turn == Turn.Player)
+            {
+                board.UpdateAssist(isAssist, player.DiscType);
+                player.Bound.Play();
+
+                selectedDisc = player.GetNextDisc();
+            }
+            else
+            {
+                board.UpdateAssist(isAssist, enemy.DiscType);
+                enemy.Bound.Play();
+
+                selectedDisc = enemy.GetNextDisc();
+            }
         }
     }
 }
