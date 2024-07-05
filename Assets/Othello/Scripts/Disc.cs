@@ -6,10 +6,12 @@ namespace Othello
     public class Disc : MonoBehaviour
     {
         [SerializeField] Sprite[] discSprites;
+        [SerializeField] ReverseAnimation reverse;
         [SerializeField] Image image;
         DiscType discType;
         int reverseIdx;
 
+        public ReverseAnimation Reverse => reverse;
         public DiscType DiscType => discType;
         public int ReverseIdx { get => reverseIdx; set => reverseIdx = value; }
 

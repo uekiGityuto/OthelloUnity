@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7700353155074046080}
   - component: {fileID: 1380281435641855167}
+  - component: {fileID: -7944957032646059486}
   - component: {fileID: 4809095571867027602}
   - component: {fileID: 7450119783188790060}
   m_Layer: 5
@@ -53,7 +54,24 @@ MonoBehaviour:
   discSprites:
   - {fileID: 21300000, guid: 030bbd782de204036b8a1bb7357ecb98, type: 3}
   - {fileID: 21300000, guid: edb271840e4e3411caeb086ade26dcac, type: 3}
+  reverse: {fileID: -7944957032646059486}
   image: {fileID: 7450119783188790060}
+--- !u!114 &-7944957032646059486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6475557255129564208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06af5a0d5762b404eaf97c6c4b3af5d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disc: {fileID: 1380281435641855167}
+  delay: 0.15
+  duration: 0.2
+  axis: {x: 0, y: 1, z: 0}
 --- !u!222 &4809095571867027602
 CanvasRenderer:
   m_ObjectHideFlags: 0

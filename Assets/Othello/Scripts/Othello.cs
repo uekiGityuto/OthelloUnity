@@ -53,8 +53,12 @@ namespace Othello
         {
             if (board.CanPlaceDisc(cell, player.DiscType))
             {
+                var reverseDiscs = board.GetReverseDiscs(cell, player.DiscType);
                 board.PlaceDisc(cell, selectedDisc);
-                ChangeTurn();
+                foreach (var disc in reverseDiscs)
+                {
+                    disc.Reverse.Play(player.DiscType);
+                }
             }
 
         }
