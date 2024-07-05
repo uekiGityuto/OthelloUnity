@@ -47,6 +47,7 @@ namespace Othello
         {
             othello.IsAssist = isAssist;
             assistImage.sprite = assistSprites[isAssist ? 1 : 0];
+            board.UpdateAssist(isAssist, DiscType.Black);
         }
 
         public void OnDifficultyRightClick()

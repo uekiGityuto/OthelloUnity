@@ -4,10 +4,11 @@ namespace Othello
 {
     public class Cell : MonoBehaviour
     {
+        [SerializeField] Disc assist;
+        [SerializeField] Transform discSpace;
         Othello othello;
         int x;
         int y;
-        [SerializeField] Transform discSpace;
         Disc disc;
 
         public int X => x;
@@ -30,6 +31,12 @@ namespace Othello
         public void OnClick()
         {
             othello.OnCellClick(this);
+        }
+
+        public void UpdateAssist(bool active, DiscType discType)
+        {
+            if (assist.DiscType != discType) assist.SetDiscType(discType);
+            assist.gameObject.SetActive(active);
         }
 
     }

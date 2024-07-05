@@ -3,9 +3,6 @@ using System.Collections.Generic;
 
 namespace Othello
 {
-    /// <summary>
-    /// ボード。石やセルの操作を行う。
-    /// </summary>
     public class Board : MonoBehaviour
     {
         public const int Column = 8;
@@ -19,9 +16,6 @@ namespace Othello
 
         public Cell[,] Cells => cells;
 
-        /// <summary>
-        /// ボードを初期化
-        /// </summary>
         public void Init()
         {
             for (var y = 0; y < Row; y++)
@@ -35,12 +29,6 @@ namespace Othello
             }
         }
 
-        /// <summary>
-        /// セルに石を置く(直接)
-        /// </summary>
-        /// <param name="x">セルX位置</param>
-        /// <param name="y">セルY位置</param>
-        /// <param name="discType">石タイプ</param>
         public void PlaceDiscDirect(int x, int y, DiscType discType)
         {
             var cell = cells[x, y];
@@ -49,11 +37,6 @@ namespace Othello
             cell.Disc = disc;
         }
 
-        /// <summary>
-        /// セルに石を置く
-        /// </summary>
-        /// <param name="cell">セル</param>
-        /// <param name="disc">石</param>
         public void PlaceDisc(Cell cell, Disc disc)
         {
             disc.transform.SetParent(cell.DiscSpace);
@@ -64,11 +47,6 @@ namespace Othello
             cell.Disc = disc;
         }
 
-        /// <summary>
-        /// 石が置けるか
-        /// </summary>
-        /// <param name="discType">石タイプ</param>
-        /// <returns>石が置けるなら true</returns>
         public bool CanPlaceDisc(DiscType discType)
         {
             foreach (var cell in cells)
@@ -78,67 +56,48 @@ namespace Othello
             return false;
         }
 
-        /// <summary>
-        /// 石が置けるか
-        /// </summary>
-        /// <param name="cell">セル</param>
-        /// <param name="discType">石タイプ</param>
-        /// <returns>石が置けるなら true</returns>
         public bool CanPlaceDisc(Cell cell, DiscType discType)
         {
             var reverseDiscs = GetReverseDiscs(cell, discType);
             return (reverseDiscs.Count > 0);
         }
 
-        /// <summary>
-        /// 反転する石を取得
-        /// </summary>
-        /// <param name="cell">セル</param>
-        /// <param name="discType">石タイプ</param>
-        /// <returns>反転石リスト。反転する石が見つからなかった場合は空。</returns>
         public List<Disc> GetReverseDiscs(Cell cell, DiscType discType)
         {
             reverseDiscs.Clear();
 
-            // すでに石が置かれていたら空を返す
             if (cell.Disc != null) return reverseDiscs;
 
-            // 反転インデックスを初期化
             foreach (var c in cells)
             {
                 if (c.Disc == null) continue;
                 c.Disc.ReverseIdx = 0;
             }
 
-            // 右の石を検索
             foundReverseDiscs.Clear();
             for (var x = cell.X + 1; x < Column; x++)
             {
                 if (SearchReverseDiscs(cells[x, cell.Y], discType)) break;
             }
 
-            // 左の石を検索
             foundReverseDiscs.Clear();
             for (var x = cell.X - 1; x >= 0; x--)
             {
                 if (SearchReverseDiscs(cells[x, cell.Y], discType)) break;
             }
 
-            // 下の石を検索
             foundReverseDiscs.Clear();
             for (var y = cell.Y + 1; y < Row; y++)
             {
                 if (SearchReverseDiscs(cells[cell.X, y], discType)) break;
             }
 
-            // 上の石を検索
             foundReverseDiscs.Clear();
             for (var y = cell.Y - 1; y >= 0; y--)
             {
                 if (SearchReverseDiscs(cells[cell.X, y], discType)) break;
             }
 
-            // 左上の石を検索
             foundReverseDiscs.Clear();
             {
                 var x = cell.X - 1;
@@ -151,7 +110,6 @@ namespace Othello
                 }
             }
 
-            // 右上の石を検索
             foundReverseDiscs.Clear();
             {
                 var x = cell.X + 1;
@@ -164,7 +122,6 @@ namespace Othello
                 }
             }
 
-            // 左下の石を検索
             foundReverseDiscs.Clear();
             {
                 var x = cell.X - 1;
@@ -177,7 +134,6 @@ namespace Othello
                 }
             }
 
-            // 右下の石を検索
             foundReverseDiscs.Clear();
             {
                 var x = cell.X + 1;
@@ -193,35 +149,41 @@ namespace Othello
             return reverseDiscs;
         }
 
-        /// <summary>
-        /// 反転する石を検索
-        /// </summary>
-        /// <param name="cell">セル</param>
-        /// <param name="discType">石タイプ</param>
-        /// <returns>検索終了なら true</returns>
         bool SearchReverseDiscs(Cell cell, DiscType discType)
         {
             if (cell.Disc == null)
             {
-                // 石がないので終了
                 return true;
             }
             else if (cell.Disc.DiscType != discType)
             {
-                // 違う色の石なので反転石を保存(演出用に反転インデックスを設定しとく)
                 cell.Disc.ReverseIdx = foundReverseDiscs.Count;
                 foundReverseDiscs.Add(cell.Disc);
                 return false;
             }
             else
             {
-                // 同じ色の石なので終了
                 if (foundReverseDiscs.Count > 0)
                 {
-                    // 見つかった反転石を保存
                     reverseDiscs.AddRange(foundReverseDiscs);
                 }
                 return true;
+            }
+        }
+
+        public void UpdateAssist(bool isAssist, DiscType discType)
+        {
+            foreach (var cell in cells)
+            {
+                if (isAssist)
+                {
+                    var active = CanPlaceDisc(cell, discType);
+                    cell.UpdateAssist(active, discType);
+                }
+                else
+                {
+                    cell.UpdateAssist(false, discType);
+                }
             }
         }
     }

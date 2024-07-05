@@ -45,6 +45,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1100663297372943470}
   - component: {fileID: 6157203548292548333}
+  - component: {fileID: 5653068588494217435}
   - component: {fileID: 8971272256200695151}
   m_Layer: 5
   m_Name: Assist
@@ -80,6 +81,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1569262631463936672}
   m_CullTransparentMesh: 1
+--- !u!114 &5653068588494217435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569262631463936672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c568e1ab44e9438eb344ad02bad313d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  discSprites:
+  - {fileID: 21300000, guid: 030bbd782de204036b8a1bb7357ecb98, type: 3}
+  - {fileID: 21300000, guid: edb271840e4e3411caeb086ade26dcac, type: 3}
+  image: {fileID: 8971272256200695151}
 --- !u!114 &8971272256200695151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,8 +136,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6534966475839810707}
-  - component: {fileID: 6039920793845101293}
   - component: {fileID: 360898161747601186}
+  - component: {fileID: -4825037308075250388}
   - component: {fileID: 1659920527703142058}
   - component: {fileID: 8457256441388444626}
   m_Layer: 5
@@ -152,7 +169,15 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6039920793845101293
+--- !u!222 &360898161747601186
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7365088365529472954}
+  m_CullTransparentMesh: 1
+--- !u!114 &-4825037308075250388
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -164,15 +189,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 659b2d764b54c483dbdf9a1491dadddb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  assist: {fileID: 5653068588494217435}
   discSpace: {fileID: 3959147579454441387}
---- !u!222 &360898161747601186
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7365088365529472954}
-  m_CullTransparentMesh: 1
 --- !u!114 &1659920527703142058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,7 +265,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6039920793845101293}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Othello.Cell, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
