@@ -6,6 +6,7 @@ namespace Othello
     {
         [SerializeField] Disc assist;
         [SerializeField] Transform discSpace;
+        [SerializeField] NgAnimation ng;
         Othello othello;
         int x;
         int y;
@@ -14,6 +15,7 @@ namespace Othello
         public int X => x;
         public int Y => y;
         public Transform DiscSpace => discSpace;
+        public NgAnimation Ng => ng;
         public Disc Disc { get => disc; set => disc = value; }
 
         public bool IsEdge => x == 0 || x == Board.Column - 1 || y == 0 || y == Board.Row - 1;

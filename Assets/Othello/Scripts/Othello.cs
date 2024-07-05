@@ -115,7 +115,7 @@ namespace Othello
             }
             else
             {
-                // 石が置けない
+                cell.Ng.Play();
             }
         }
 
