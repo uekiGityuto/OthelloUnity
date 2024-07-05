@@ -15,7 +15,7 @@ namespace Othello
         float waitTime;
         DiscType reversedDiscType;
 
-        public bool IsPlaying => (sq != Sequence.None);
+        public bool IsPlaying => sq != Sequence.None;
 
         void Update()
         {

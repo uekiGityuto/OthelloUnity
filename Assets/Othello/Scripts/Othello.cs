@@ -1,6 +1,8 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
+using UnityEngine.UI;
 
 namespace Othello
 {
@@ -12,6 +14,7 @@ namespace Othello
 
     public class Othello : MonoBehaviour
     {
+        enum Sequence { None, DiscPlacement, DiscReversing }
 
         [SerializeField] Difficulty difficulty;
         [SerializeField] PlayFirst playFirst;
@@ -20,12 +23,49 @@ namespace Othello
         [SerializeField] Player player;
         [SerializeField] Enemy enemy;
         [SerializeField] Board board;
+        [SerializeField] Button restart;
+
         Turn turn;
+        Sequence sq;
         Disc selectedDisc;
+        Cell selectedCell;
+        List<Disc> selectedReverseDiscs;
 
         public Difficulty Difficulty { get => difficulty; set => difficulty = value; }
         public PlayFirst PlayFirst { get => playFirst; set => playFirst = value; }
         public bool IsAssist { get => isAssist; set => isAssist = value; }
+
+        void Update()
+        {
+            if (sq == Sequence.DiscPlacement)
+            {
+                board.PlaceDisc(selectedCell, selectedDisc);
+                foreach (var disc in selectedReverseDiscs)
+                {
+                    disc.Reverse.Play(selectedDisc.DiscType);
+                }
+                sq = Sequence.DiscReversing;
+            }
+            else if (sq == Sequence.DiscReversing)
+            {
+                var isPlaying = false;
+                foreach (var disc in selectedReverseDiscs)
+                {
+                    if (disc.Reverse.IsPlaying)
+                    {
+                        isPlaying = true;
+                        break;
+                    }
+                }
+
+                if (!isPlaying)
+                {
+                    sq = Sequence.None;
+                    restart.interactable = true;
+                    ChangeTurn();
+                }
+            }
+        }
 
         public void OnGameStartClick()
         {
@@ -51,21 +91,32 @@ namespace Othello
 
         public void OnCellClick(Cell cell)
         {
-            if (board.CanPlaceDisc(cell, player.DiscType))
-            {
-                var reverseDiscs = board.GetReverseDiscs(cell, player.DiscType);
-                board.PlaceDisc(cell, selectedDisc);
-                foreach (var disc in reverseDiscs)
-                {
-                    disc.Reverse.Play(player.DiscType);
-                }
-            }
+            if (turn != Turn.Player) return;
+            if (sq != Sequence.None) return;
+
+            var reverseDiscs = board.GetReverseDiscs(cell, player.DiscType);
+            ExecuteDiscPlacement(cell, reverseDiscs);
 
         }
 
         public void OnRestartClick()
         {
             SceneManager.LoadScene("Othello");
+        }
+
+        void ExecuteDiscPlacement(Cell cell, List<Disc> reverseDiscs)
+        {
+            if (reverseDiscs.Count > 0)
+            {
+                sq = Sequence.DiscPlacement;
+                selectedCell = cell;
+                selectedReverseDiscs = reverseDiscs;
+                restart.interactable = false;
+            }
+            else
+            {
+                // 石が置けない
+            }
         }
 
         void ChangeTurn()

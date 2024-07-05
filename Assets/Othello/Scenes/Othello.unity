@@ -1014,6 +1014,7 @@ MonoBehaviour:
   player: {fileID: 343784288}
   enemy: {fileID: 2101259550}
   board: {fileID: 774325387}
+  restart: {fileID: 278165045}
 --- !u!1 &472101771
 GameObject:
   m_ObjectHideFlags: 0
