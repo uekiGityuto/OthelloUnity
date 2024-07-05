@@ -956,6 +956,7 @@ MonoBehaviour:
   orderSprites:
   - {fileID: 21300000, guid: 50d9298066e33494d83ddc9a9c463c6f, type: 3}
   - {fileID: 21300000, guid: b6376e8e01a854acabb5d477bb37a619, type: 3}
+  bound: {fileID: 472101775}
   order: {fileID: 83860159}
   discSpace: {fileID: 279254735}
 --- !u!1 &370366753
@@ -1022,6 +1023,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 472101772}
+  - component: {fileID: 472101775}
   - component: {fileID: 472101774}
   - component: {fileID: 472101773}
   m_Layer: 5
@@ -1088,6 +1090,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 472101771}
   m_CullTransparentMesh: 1
+--- !u!114 &472101775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472101771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d869017092553440cad29afc73a279c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deltaScale: 0.2
+  duration: 0.3
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -3708,6 +3724,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1781423445}
+  - component: {fileID: 1781423448}
   - component: {fileID: 1781423447}
   - component: {fileID: 1781423446}
   m_Layer: 5
@@ -3774,6 +3791,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1781423444}
   m_CullTransparentMesh: 1
+--- !u!114 &1781423448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781423444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d869017092553440cad29afc73a279c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deltaScale: 0.1
+  duration: 0.1
 --- !u!1 &1844640777
 GameObject:
   m_ObjectHideFlags: 0
@@ -4039,6 +4070,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9eb62de3a8d414be4a852f238ca996ad, type: 3}
   - {fileID: 21300000, guid: 32db3f16f725e48e4b86570fb105f130, type: 3}
   chara: {fileID: 1781423446}
+  bound: {fileID: 1781423448}
   order: {fileID: 1326147769}
   discSpace: {fileID: 1453812264}
 --- !u!1 &2138334666

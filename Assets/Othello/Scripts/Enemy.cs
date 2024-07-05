@@ -9,12 +9,14 @@ namespace Othello
         [SerializeField] Sprite[] charaSprites;
         [SerializeField] Sprite[] orderSprites;
         [SerializeField] Image chara;
+        [SerializeField] BoundAnimation bound;
         [SerializeField] Image order;
         [SerializeField] Transform discSpace;
         Difficulty difficulty;
         DiscType discType;
         List<Disc> discs = new List<Disc>();
 
+        public BoundAnimation Bound => bound;
         public Transform DiscSpace => discSpace;
         public DiscType DiscType => discType;
         public List<Disc> Discs => discs;

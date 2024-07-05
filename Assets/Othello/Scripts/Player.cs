@@ -10,11 +10,13 @@ namespace Othello
         public const int DiscLayoutSpacing5 = 15;
 
         [SerializeField] Sprite[] orderSprites;
+        [SerializeField] BoundAnimation bound;
         [SerializeField] Image order;
         [SerializeField] Transform discSpace;
         DiscType discType;
         List<Disc> discs = new List<Disc>();
 
+        public BoundAnimation Bound => bound;
         public Transform DiscSpace => discSpace;
         public DiscType DiscType => discType;
         public List<Disc> Discs => discs;

@@ -36,13 +36,14 @@ namespace Othello
                 firstTurn = Turn.Player;
                 player.Init(DiscType.Black, true);
                 enemy.Init(DiscType.White, false, difficulty);
-
+                player.Bound.Play();
             }
             else
             {
                 firstTurn = Turn.Enemy;
                 player.Init(DiscType.White, false);
                 enemy.Init(DiscType.Black, true, difficulty);
+                enemy.Bound.Play();
             }
 
             startMenu.gameObject.SetActive(false);
