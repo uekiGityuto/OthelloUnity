@@ -1015,7 +1015,8 @@ MonoBehaviour:
   enemy: {fileID: 2101259550}
   board: {fileID: 774325387}
   restart: {fileID: 278165045}
-  info: {fileID: 0}
+  info: {fileID: 1756816178}
+  result: {fileID: 720095252}
 --- !u!1 &472101771
 GameObject:
   m_ObjectHideFlags: 0
@@ -1522,6 +1523,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 720095251}
+  - component: {fileID: 720095252}
   m_Layer: 5
   m_Name: Result
   m_TagString: Untagged
@@ -1554,6 +1556,32 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -192.7962, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &720095252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720095250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 496212ca92b144dcc9028094fc791687, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 343784288}
+  enemy: {fileID: 2101259550}
+  board: {fileID: 774325387}
+  playerDisc: {fileID: 1264554972}
+  playerDiscCount: {fileID: 1335298038}
+  enemyDisc: {fileID: 1699457782}
+  enemyDiscCount: {fileID: 1174734620}
+  back: {fileID: 245143017}
+  results:
+  - {fileID: 1278959104}
+  - {fileID: 1553325129}
+  - {fileID: 1363560622}
+  startDelay: 0.5
+  lastDelay: 1
 --- !u!1 &724166076
 GameObject:
   m_ObjectHideFlags: 0
@@ -1785,6 +1813,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 720095251}
     m_Modifications:
+    - target: {fileID: 5425912414756024896, guid: 8ff7165a63ca94375af334572faf28eb, type: 3}
+      propertyPath: duration
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5425912414756024896, guid: 8ff7165a63ca94375af334572faf28eb, type: 3}
+      propertyPath: deltaScale
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 6475557255129564208, guid: 8ff7165a63ca94375af334572faf28eb, type: 3}
       propertyPath: m_Name
       value: PlayerDisc
@@ -2607,6 +2643,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1174734618}
   m_CullTransparentMesh: 1
+--- !u!114 &1264554972 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1380281435641855167, guid: 8ff7165a63ca94375af334572faf28eb, type: 3}
+  m_PrefabInstance: {fileID: 807613623}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c568e1ab44e9438eb344ad02bad313d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1278959104
 GameObject:
   m_ObjectHideFlags: 0
@@ -3500,6 +3547,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 720095251}
     m_Modifications:
+    - target: {fileID: 5425912414756024896, guid: 8ff7165a63ca94375af334572faf28eb, type: 3}
+      propertyPath: duration
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5425912414756024896, guid: 8ff7165a63ca94375af334572faf28eb, type: 3}
+      propertyPath: deltaScale
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 6475557255129564208, guid: 8ff7165a63ca94375af334572faf28eb, type: 3}
       propertyPath: m_Name
       value: EnemyDisc
@@ -3605,6 +3660,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7700353155074046080, guid: 8ff7165a63ca94375af334572faf28eb, type: 3}
   m_PrefabInstance: {fileID: 1699457777}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1699457782 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1380281435641855167, guid: 8ff7165a63ca94375af334572faf28eb, type: 3}
+  m_PrefabInstance: {fileID: 1699457777}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c568e1ab44e9438eb344ad02bad313d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1756816176
 GameObject:
   m_ObjectHideFlags: 0

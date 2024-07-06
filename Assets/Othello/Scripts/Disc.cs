@@ -7,11 +7,14 @@ namespace Othello
     {
         [SerializeField] Sprite[] discSprites;
         [SerializeField] ReverseAnimation reverse;
+        [SerializeField] BoundAnimation bound;
+
         [SerializeField] Image image;
         DiscType discType;
         int reverseIdx;
 
         public ReverseAnimation Reverse => reverse;
+        public BoundAnimation Bound => bound;
         public DiscType DiscType => discType;
         public int ReverseIdx { get => reverseIdx; set => reverseIdx = value; }
 

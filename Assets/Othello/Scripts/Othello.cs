@@ -18,7 +18,7 @@ namespace Othello
     {
         enum Sequence
         {
-            None, DiscPlacement, DiscReversing, Pass, PassPlaying, GameEnd, GameEndPlaying
+            None, DiscPlacement, DiscReversing, Pass, PassPlaying, GameEnd, GameEndPlaying, ResultPlaying, ResultEnd
         }
 
         [SerializeField] Difficulty difficulty;
@@ -30,6 +30,7 @@ namespace Othello
         [SerializeField] Board board;
         [SerializeField] Button restart;
         [SerializeField] InfoAnimation info;
+        [SerializeField] Result result;
 
         Turn turn;
         Sequence sq;
@@ -103,7 +104,22 @@ namespace Othello
             {
                 if (!info.IsPlaying)
                 {
-                    // リザルトへ
+                    result.Play();
+                    sq = Sequence.ResultPlaying;
+                }
+            }
+            else if (sq == Sequence.ResultPlaying)
+            {
+                if (!result.IsPlaying)
+                {
+                    sq = Sequence.ResultEnd;
+                }
+            }
+            else if (sq == Sequence.ResultEnd)
+            {
+                if (Input.GetMouseButtonUp(0))
+                {
+                    OnRestartClick();
                 }
             }
         }
