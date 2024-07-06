@@ -27,6 +27,8 @@ namespace Othello
 
         Turn turn;
         Sequence sq;
+        float time;
+        float waitTime;
         Disc selectedDisc;
         Cell selectedCell;
         List<Disc> selectedReverseDiscs;
@@ -39,12 +41,17 @@ namespace Othello
         {
             if (sq == Sequence.DiscPlacement)
             {
-                board.PlaceDisc(selectedCell, selectedDisc);
-                foreach (var disc in selectedReverseDiscs)
+                time += Time.deltaTime;
+                if (time >= waitTime)
                 {
-                    disc.Reverse.Play(selectedDisc.DiscType);
+                    time = 0;
+                    board.PlaceDisc(selectedCell, selectedDisc);
+                    foreach (var disc in selectedReverseDiscs)
+                    {
+                        disc.Reverse.Play(selectedDisc.DiscType);
+                    }
+                    sq = Sequence.DiscReversing;
                 }
-                sq = Sequence.DiscReversing;
             }
             else if (sq == Sequence.DiscReversing)
             {
@@ -109,6 +116,7 @@ namespace Othello
             if (reverseDiscs.Count > 0)
             {
                 sq = Sequence.DiscPlacement;
+                waitTime = (turn == Turn.Enemy) ? Enemy.DiscPlacementWaitTime : 0;
                 selectedCell = cell;
                 selectedReverseDiscs = reverseDiscs;
                 restart.interactable = false;
@@ -142,6 +150,8 @@ namespace Othello
                 enemy.Bound.Play();
 
                 selectedDisc = enemy.GetNextDisc();
+                enemy.TryGetReverseDiscs(out var selectedCell, out var selectedReverseDiscs);
+                ExecuteDiscPlacement(selectedCell, selectedReverseDiscs);
             }
         }
     }

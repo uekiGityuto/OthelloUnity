@@ -6,8 +6,11 @@ namespace Othello
 {
     public class Enemy : MonoBehaviour
     {
+        public const float DiscPlacementWaitTime = 0.5f;
+
         [SerializeField] Sprite[] charaSprites;
         [SerializeField] Sprite[] orderSprites;
+        [SerializeField] EnemyAI ai;
         [SerializeField] Image chara;
         [SerializeField] BoundAnimation bound;
         [SerializeField] Image order;
@@ -56,6 +59,19 @@ namespace Othello
             discs.RemoveAt(discs.Count - 1);
             disc.gameObject.SetActive(false);
             return disc;
+        }
+
+        public bool TryGetReverseDiscs(out Cell selectedCell, out List<Disc> selectedReverseDiscs)
+        {
+            if (difficulty == Difficulty.Normal)
+            {
+                return ai.CalculateNormalAI(out selectedCell, out selectedReverseDiscs);
+            }
+            else
+            {
+                return ai.CalculateHardAI(out selectedCell, out selectedReverseDiscs);
+            }
+
         }
     }
 }
