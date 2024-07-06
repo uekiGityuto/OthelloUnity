@@ -24,6 +24,7 @@ namespace Othello
         [SerializeField] Enemy enemy;
         [SerializeField] Board board;
         [SerializeField] Button restart;
+        [SerializeField] InfoAnimation info;
 
         Turn turn;
         Sequence sq;
