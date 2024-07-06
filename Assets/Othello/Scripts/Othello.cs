@@ -11,10 +11,15 @@ namespace Othello
     public enum PlayFirst { Player, Enemy, Random }
     public enum DiscType { Black, White }
     public enum Turn { Player, Enemy }
+    public enum ResultType { Win, Lose, Draw }
+
 
     public class Othello : MonoBehaviour
     {
-        enum Sequence { None, DiscPlacement, DiscReversing, Pass, PassPlaying }
+        enum Sequence
+        {
+            None, DiscPlacement, DiscReversing, Pass, PassPlaying, GameEnd, GameEndPlaying
+        }
 
         [SerializeField] Difficulty difficulty;
         [SerializeField] PlayFirst playFirst;
@@ -89,6 +94,18 @@ namespace Othello
                     ChangeTurn();
                 }
             }
+            else if (sq == Sequence.GameEnd)
+            {
+                info.PlayGameEnd();
+                sq = Sequence.GameEndPlaying;
+            }
+            else if (sq == Sequence.GameEndPlaying)
+            {
+                if (!info.IsPlaying)
+                {
+                    // リザルトへ
+                }
+            }
         }
 
         public void OnGameStartClick()
@@ -155,7 +172,9 @@ namespace Othello
             turn = nextTurn;
             if ((player.Discs.Count == 0 && enemy.Discs.Count == 0) || passCount >= 2)
             {
-                // ゲーム終了
+                board.UpdateAssist(false, DiscType.Black);
+                restart.interactable = false;
+                sq = Sequence.GameEnd;
             }
             else if (turn == Turn.Player)
             {
