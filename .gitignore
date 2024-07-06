@@ -79,3 +79,7 @@ crashlytics-build.properties
 
 # Mac
 .DS_Store
+
+# Builds
+/build/
+/Release/
