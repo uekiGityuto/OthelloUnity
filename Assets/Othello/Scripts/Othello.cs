@@ -14,7 +14,7 @@ namespace Othello
 
     public class Othello : MonoBehaviour
     {
-        enum Sequence { None, DiscPlacement, DiscReversing }
+        enum Sequence { None, DiscPlacement, DiscReversing, Pass, PassPlaying }
 
         [SerializeField] Difficulty difficulty;
         [SerializeField] PlayFirst playFirst;
@@ -33,6 +33,8 @@ namespace Othello
         Disc selectedDisc;
         Cell selectedCell;
         List<Disc> selectedReverseDiscs;
+        int passCount;
+
 
         public Difficulty Difficulty { get => difficulty; set => difficulty = value; }
         public PlayFirst PlayFirst { get => playFirst; set => playFirst = value; }
@@ -67,6 +69,20 @@ namespace Othello
                 }
 
                 if (!isPlaying)
+                {
+                    sq = Sequence.None;
+                    restart.interactable = true;
+                    ChangeTurn();
+                }
+            }
+            else if (sq == Sequence.Pass)
+            {
+                info.PlayPass();
+                sq = Sequence.PassPlaying;
+            }
+            else if (sq == Sequence.PassPlaying)
+            {
+                if (!info.IsPlaying)
                 {
                     sq = Sequence.None;
                     restart.interactable = true;
@@ -137,22 +153,62 @@ namespace Othello
         void ChangeTurn(Turn nextTurn)
         {
             turn = nextTurn;
-            turn = nextTurn;
-            if (turn == Turn.Player)
+            if ((player.Discs.Count == 0 && enemy.Discs.Count == 0) || passCount >= 2)
+            {
+                // ゲーム終了
+            }
+            else if (turn == Turn.Player)
             {
                 board.UpdateAssist(isAssist, player.DiscType);
                 player.Bound.Play();
 
-                selectedDisc = player.GetNextDisc();
+                if (board.CanPlaceDisc(player.DiscType))
+                {
+                    passCount = 0;
+                    if (enemy.Discs.Count > player.Discs.Count)
+                    {
+                        selectedDisc = enemy.GetNextDisc();
+                        selectedDisc.SetDiscType(player.DiscType);
+                    }
+                    else
+                    {
+                        selectedDisc = player.GetNextDisc();
+                    }
+                }
+                else
+                {
+                    passCount++;
+                    restart.interactable = false;
+                    sq = Sequence.Pass;
+                }
             }
             else
             {
                 board.UpdateAssist(isAssist, enemy.DiscType);
                 enemy.Bound.Play();
 
-                selectedDisc = enemy.GetNextDisc();
-                enemy.TryGetReverseDiscs(out var selectedCell, out var selectedReverseDiscs);
-                ExecuteDiscPlacement(selectedCell, selectedReverseDiscs);
+                if (board.CanPlaceDisc(enemy.DiscType))
+                {
+                    passCount = 0;
+                    if (player.Discs.Count > enemy.Discs.Count)
+                    {
+                        selectedDisc = player.GetNextDisc();
+                        selectedDisc.SetDiscType(enemy.DiscType);
+                    }
+                    else
+                    {
+                        selectedDisc = enemy.GetNextDisc();
+                    }
+
+                    enemy.TryGetReverseDiscs(out var selectedCell, out var selectedReverseDiscs);
+                    ExecuteDiscPlacement(selectedCell, selectedReverseDiscs);
+                }
+                else
+                {
+                    passCount++;
+                    restart.interactable = false;
+                    sq = Sequence.Pass;
+                }
             }
         }
     }
