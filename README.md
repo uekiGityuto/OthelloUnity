@@ -1,0 +1,2 @@
+# OthelloUnity
+Unityで作ったオセロ
